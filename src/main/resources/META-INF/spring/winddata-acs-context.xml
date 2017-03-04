@@ -20,7 +20,7 @@
         entry-point-ref="preAuthenticationEntryPoint">
          <expression-handler ref="acsExpressionHandler" /> 
 	  
-     	<intercept-url pattern="/services/windservices/tags" access="isAcsAuthorized() and isFullyAuthenticated()" />
+     	<intercept-url pattern="/services/iothydrator/tags" access="isAcsAuthorized() and isFullyAuthenticated()" />
        
         <anonymous enabled="false" />
         <custom-filter ref="oauth2ClientFilter" before="PRE_AUTH_FILTER" />

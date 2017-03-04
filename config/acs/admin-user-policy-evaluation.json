@@ -1,6 +1,6 @@
 {
   "action": "GET",
-  "resourceIdentifier": "/services/windservices/tags",
+  "resourceIdentifier": "/services/iothydrator/tags",
   "subjectAttributes": [
     {
       "issuer": "https://acs.attributes.int",

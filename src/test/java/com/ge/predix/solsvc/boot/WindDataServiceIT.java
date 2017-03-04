@@ -67,7 +67,7 @@ public class WindDataServiceIT {
 	@SuppressWarnings("nls")
 	@Test
 	public void pingTest()throws Exception {
-		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/windservices/ping");
+		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/ping");
 		ResponseEntity<String> response = this.template.getForEntity(windDataURl.toString(), String.class);
 		assertThat(response.getBody(), startsWith("Greetings from CXF Bean Rest Service"));		
 	}
@@ -83,7 +83,7 @@ public class WindDataServiceIT {
 		headers.put("Authorization", Collections.singletonList("testHeader"));
 
 		
-		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/windservices/yearly_data/sensor_id/Compressor-2015:CompressionRatio");
+		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/yearly_data/sensor_id/Compressor-2015:CompressionRatio");
 		
 		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
 			
@@ -102,7 +102,7 @@ public class WindDataServiceIT {
 		headers.put("Authorization", Collections.singletonList("testHeader"));
 
 		
-		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/windservices/latest_data/sensor_id/Compressor-2015:CompressionRatio");
+		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/latest_data/sensor_id/Compressor-2015:CompressionRatio");
 		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
 		
 		DatapointsResponse dpResponse = this.jsonMapper.fromJson(response.getBody(), DatapointsResponse.class);
@@ -122,7 +122,7 @@ public class WindDataServiceIT {
 		headers.put("Authorization", Collections.singletonList("testHeader"));
 
 		
-		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/windservices/yearly_data/sensor_id/RMD_metric3,RMD_metric2");
+		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/yearly_data/sensor_id/RMD_metric3,RMD_metric2");
 		
 		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
 		
@@ -145,7 +145,7 @@ public class WindDataServiceIT {
 		headers.put("Authorization", Collections.singletonList("testHeader"));
 
 		
-		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/windservices/tags");
+		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/tags");
 		
 		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
 	    DatapointsResponse dpResponse = this.jsonMapper.fromJson(response.getBody(), DatapointsResponse.class);

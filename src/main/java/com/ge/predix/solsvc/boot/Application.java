@@ -179,7 +179,7 @@ public class Application
         model.addAttribute("api",applicationURl.toString()+"api");//$NON-NLS-1$ //$NON-NLS-2$ 
         model.addAttribute("health",applicationURl.toString()+"health");//$NON-NLS-1$ //$NON-NLS-2$ 
         model.addAttribute("docs",this.docsUrl);//$NON-NLS-1$ 
-        model.addAttribute("compressionratio",applicationURl.toString()+"services/windservices/yearly_data/sensor_id/Compressor-2015:CompressionRatio");//$NON-NLS-1$ 
+        model.addAttribute("compressionratio",applicationURl.toString()+"services/iothydrator/yearly_data/sensor_id/Compressor-2015:CompressionRatio");//$NON-NLS-1$
          
         return "index"; //$NON-NLS-1$
     }

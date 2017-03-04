@@ -5,7 +5,7 @@
             "name" : "allow-all-HTTP-requests-for-admin",
             "target" : {
                 "resource" : {
-                 "uriTemplate" : "/services/windservices/tags"
+                 "uriTemplate" : "/services/iothydrator/tags"
                 },
                 "subject" : {
                     "name" : "has-role",
@@ -47,7 +47,7 @@
             "name" : "deny-only-HTTP GET-for-operator",
             "target" : {
                 "resource" : {
-                    "uriTemplate" : "/services/windservices/tags"
+                    "uriTemplate" : "/services/iothydrator/tags"
                 },
                 "action":"GET",
                 "subject" : {

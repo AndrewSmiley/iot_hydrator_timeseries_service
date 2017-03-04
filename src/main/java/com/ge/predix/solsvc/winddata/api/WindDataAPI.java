@@ -26,8 +26,8 @@ import org.springframework.security.access.method.P;
 {
         "application/json", "application/xml"
 })
-@Path("/windservices")
-@Api(value = "/windservices")
+@Path("/iothydrator")
+@Api(value = "/iothydrator")
 public interface WindDataAPI
 {
     /**
