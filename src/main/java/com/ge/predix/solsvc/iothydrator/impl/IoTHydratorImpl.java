@@ -1,4 +1,4 @@
-package com.ge.predix.solsvc.winddata.impl;
+package com.ge.predix.solsvc.iothydrator.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,14 +6,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.annotation.PostConstruct;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
+import com.ge.predix.solsvc.iothydrator.api.IoTHydratorAPI;
 import org.apache.http.Header;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,6 @@ import com.ge.predix.solsvc.restclient.impl.RestClient;
 import com.ge.predix.solsvc.spi.IServiceManagerService;
 import com.ge.predix.solsvc.timeseries.bootstrap.client.TimeseriesClient;
 import com.ge.predix.solsvc.timeseries.bootstrap.config.ITimeseriesConfig;
-import com.ge.predix.solsvc.winddata.api.WindDataAPI;
 
 /**
  * Return data over REST from time series for PredixNodejsStarter
@@ -45,8 +43,8 @@ import com.ge.predix.solsvc.winddata.api.WindDataAPI;
  * @author predix -
  */
 @Component
-public class WindDataImpl implements WindDataAPI {
-	private static Logger log = LoggerFactory.getLogger(WindDataImpl.class);
+public class IoTHydratorImpl implements IoTHydratorAPI {
+	private static Logger log = LoggerFactory.getLogger(IoTHydratorImpl.class);
 
 	@Autowired
 	private IServiceManagerService serviceManagerService;
@@ -74,7 +72,7 @@ public class WindDataImpl implements WindDataAPI {
 	/**
 	 * -
 	 */
-	public WindDataImpl() {
+	public IoTHydratorImpl() {
 		super();
 	}
 
@@ -115,7 +113,7 @@ public class WindDataImpl implements WindDataAPI {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.ge.predix.solsvc.api.WindDataAPI#getWindDataTags()
+	 * @see com.ge.predix.solsvc.api.IoTHydratorAPI#getWindDataTags()
 	 */
 	@SuppressWarnings("nls")
 	@Override

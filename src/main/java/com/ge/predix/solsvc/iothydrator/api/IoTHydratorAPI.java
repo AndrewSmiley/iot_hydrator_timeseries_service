@@ -1,4 +1,4 @@
-package com.ge.predix.solsvc.winddata.api;
+package com.ge.predix.solsvc.iothydrator.api;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
@@ -12,7 +12,6 @@ import javax.ws.rs.core.Response;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.security.access.method.P;
 
 /**
  * 
@@ -28,7 +27,7 @@ import org.springframework.security.access.method.P;
 })
 @Path("/iothydrator")
 @Api(value = "/iothydrator")
-public interface WindDataAPI
+public interface IoTHydratorAPI
 {
     /**
      * @return -
