@@ -52,11 +52,11 @@ public interface IoTHydratorAPI
     @GET
     @Path("/yearly_data/sensor_id/{id}")
     @ApiOperation(value = "/yearly_data/sensor_id/{id}")
-    public Response getYearlyWindDataPoints(@PathParam("id") String id,
-            @HeaderParam(value = "Authorization") String authorization,
-            @DefaultValue("1y-ago") @QueryParam("starttime") String starttime,
-            @DefaultValue("25") @QueryParam("taglimit") String tagLimit,
-            @DefaultValue("desc") @QueryParam("order") String tagorder);
+    public Response getYearlyIoTHydratorDataPoints(@PathParam("id") String id,
+                                                   @HeaderParam(value = "Authorization") String authorization,
+                                                   @DefaultValue("1y-ago") @QueryParam("starttime") String starttime,
+                                                   @DefaultValue("25") @QueryParam("taglimit") String tagLimit,
+                                                   @DefaultValue("desc") @QueryParam("order") String tagorder);
 
     /**
      * @param id
@@ -68,8 +68,8 @@ public interface IoTHydratorAPI
     @GET
     @Path("/latest_data/sensor_id/{id}")
     @ApiOperation(value = "/latest_data/sensor_id/{id}")
-    public Response getLatestWindDataPoints(@PathParam("id") String id,
-            @HeaderParam(value = "authorization") String authorization);
+    public Response getLatestIotHydratorDataPoints(@PathParam("id") String id,
+                                                   @HeaderParam(value = "authorization") String authorization);
 
     /**
      * 
@@ -79,18 +79,19 @@ public interface IoTHydratorAPI
     @GET
     @Path("/tags")
     @ApiOperation(value ="/tags")
-    public Response getWindDataTags(@HeaderParam(value = "authorization") String authorization);
+    public Response getIoTHydratorTags(@HeaderParam(value = "authorization") String authorization);
 
     /**
      *
-     * @param authorization -
+     * @param measure the value of the datapoint
+     * @param quality the quality of the datapoint
+     * @param name the name of the body entry we are submitting
      * @return add a datapoint
      */
     @GET
-    @Path("/add_datapoint/{measure}/{quality}/{name}")
-    @ApiOperation(value ="/add_datapoint/{measure}/{quality}/{name}")
-    public Response addDatapoint(@PathParam("measure") String measure, @PathParam("quality") String Quality, @PathParam("name") String name,
-                                 @HeaderParam(value = "authorization") String authorization);
+    @Path("/add_datapoint/{measure}/{quality}/{name}/{attributes}")
+    @ApiOperation(value ="/add_datapoint/{measure}/{quality}/{name}/{attributes}")
+    public Response addDatapoint(@PathParam("measure") String measure, @PathParam("quality") String quality, @PathParam("name") String name, @PathParam("attributes") String attributes);
 
     /**
      *

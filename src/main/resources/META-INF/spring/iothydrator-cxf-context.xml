@@ -31,7 +31,7 @@
 				<property name="scanAllResources" value="true" />
 				<property name="basePath" value="/services" />
 				<property name="contact" value ="predix.adoption@ge.com"/>
-				<property name="resourcePackage" value="com.ge.predix.solsvc.winddata.api"/>
+				<property name="resourcePackage" value="com.ge.predix.solsvc.iothydrator.api"/>
 			</bean>
 			<bean class="org.apache.cxf.feature.LoggingFeature" />
 		</jaxrs:features>

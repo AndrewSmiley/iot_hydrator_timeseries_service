@@ -1,9 +1,6 @@
 package com.ge.predix.solsvc.iothydrator.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +11,8 @@ import javax.ws.rs.core.Response.Status;
 
 import com.ge.predix.solsvc.iothydrator.api.IoTHydratorAPI;
 import org.apache.http.Header;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,11 +112,11 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.ge.predix.solsvc.api.IoTHydratorAPI#getWindDataTags()
+	 * @see com.ge.predix.solsvc.api.IoTHydratorAPI#getIoTHydratorTags()
 	 */
 	@SuppressWarnings("nls")
 	@Override
-	public Response getWindDataTags(String authorization) {
+	public Response getIoTHydratorTags(String authorization) {
 		try {
 			List<Header> headers = generateHeaders();
 			TagsList tagsList = this.timeseriesClient.listTags(headers);
@@ -163,8 +162,8 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
 
     @SuppressWarnings("nls")
 	@Override
-	public Response getYearlyWindDataPoints(String id, String authorization, String starttime, String taglimit,
-			String tagorder) {
+	public Response getYearlyIoTHydratorDataPoints(String id, String authorization, String starttime, String taglimit,
+												   String tagorder) {
 		try {
 			if (id == null) {
 				return null;
@@ -206,7 +205,7 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
 
 	@SuppressWarnings("nls")
 	@Override
-	public Response getLatestWindDataPoints(String id, String authorization) {
+	public Response getLatestIotHydratorDataPoints(String id, String authorization) {
 		try {
 			if (id == null) {
 				return null;
@@ -287,10 +286,11 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
      * @param measure
      * @param quality
      * @param name
-     * @param authorization -  @return add a datapoint
+     * @param attributes
+	 * @return add a datapoint
      */
     @Override
-    public Response addDatapoint(String measure, String quality, String name, String authorization) {
+    public Response addDatapoint(String measure, String quality, String name, String attributes) {
 
 //        System.out.println(timestamp+" "+measure+" "+ quality+" "+name);
         DatapointsIngestion dpIngestion = new DatapointsIngestion();
@@ -306,8 +306,18 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
         datapoints.add(datapoint1);
 
         com.ge.predix.entity.util.map.Map map = new com.ge.predix.entity.util.map.Map();
-        map.put("host", "server1"); //$NON-NLS-2$
-        map.put("customer", "Acme"); //$NON-NLS-2$
+		try {
+			JSONObject jObject = new JSONObject(attributes);
+			Iterator<?> keys = jObject.keys();
+			while( keys.hasNext() ){
+                String key = (String)keys.next();
+                String value = jObject.getString(key);
+                map.put(key, value);
+
+            }
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 
         body.setAttributes(map);
         body.setDatapoints(datapoints);

@@ -8,8 +8,8 @@
 
 	<context:component-scan
 		base-package="com.ge.predix.solsvc.spi,
-		com.ge.predix.solsvc.winddata.api,
-		com.ge.predix.solsvc.winddata.impl,
+		com.ge.predix.solsvc.iothydrator.api,
+		com.ge.predix.solsvc.iothydrator.impl,
 		com.ge.predix.solsvc.boot.service.cxf,
 		" />
 
