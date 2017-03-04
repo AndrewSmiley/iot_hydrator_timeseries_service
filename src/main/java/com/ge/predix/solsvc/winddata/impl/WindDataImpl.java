@@ -6,7 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.annotation.PostConstruct;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -145,7 +147,23 @@ public class WindDataImpl implements WindDataAPI {
 		}
 	}
 
-	@SuppressWarnings("nls")
+
+    /**
+     *
+     */
+    @Override
+    public Response test() {
+        System.out.println("We've done something");
+        return null;
+    }
+
+//    @Override
+//    public Response addDatapoint(String timestamp, String measure, String quality, String name, @HeaderParam(value = "authorization") String authorization) {
+//        System.out.println(timestamp+" "+measure+" "+ quality+" "+name);
+//        return null;
+//    }
+
+    @SuppressWarnings("nls")
 	@Override
 	public Response getYearlyWindDataPoints(String id, String authorization, String starttime, String taglimit,
 			String tagorder) {
@@ -214,7 +232,15 @@ public class WindDataImpl implements WindDataAPI {
 		}
 	}
 
-	@SuppressWarnings({})
+//    @SuppressWarnings("nls")
+//    @Override
+//    public Response addDatapoint(String timestamp, String measure, String quality, String authorization){
+//        return handleResult(new String());
+//    }
+
+
+
+    @SuppressWarnings({})
 	private List<Header> generateHeaders() {
 		List<Header> headers = this.restClient.getSecureTokenForClientId();
 		this.restClient.addZoneToHeaders(headers, this.timeseriesConfig.getZoneId());
@@ -258,6 +284,43 @@ public class WindDataImpl implements WindDataAPI {
 		datapointsQuery.setTags(tags);
 		return datapointsQuery;
 	}
+    /**
+
+     * @param measure
+     * @param quality
+     * @param name
+     * @param authorization -  @return add a datapoint
+     */
+    @Override
+    public Response addDatapoint(String measure, String quality, String name, String authorization) {
+
+//        System.out.println(timestamp+" "+measure+" "+ quality+" "+name);
+        DatapointsIngestion dpIngestion = new DatapointsIngestion();
+        dpIngestion.setMessageId(String.valueOf(System.currentTimeMillis()));
+
+        Body body = new Body();
+        body.setName(name); //$NON-NLS-1$
+        List<Object> datapoint1 = new ArrayList<Object>();
+        datapoint1.add(generateTimestampsWithinYear(System.currentTimeMillis()));
+        datapoint1.add(Integer.parseInt(measure));
+        datapoint1.add(Integer.parseInt(quality)); // quality
+        List<Object> datapoints = new ArrayList<Object>();
+        datapoints.add(datapoint1);
+
+        com.ge.predix.entity.util.map.Map map = new com.ge.predix.entity.util.map.Map();
+        map.put("host", "server1"); //$NON-NLS-2$
+        map.put("customer", "Acme"); //$NON-NLS-2$
+
+        body.setAttributes(map);
+        body.setDatapoints(datapoints);
+        List<Body> bodies = new ArrayList<Body>();
+        bodies.add(body);
+
+        dpIngestion.setBody(bodies);
+        this.timeseriesClient.postDataToTimeseriesWebsocket(dpIngestion);
+
+        return null;
+    }
 
 	@SuppressWarnings({ "nls", "unchecked" })
 	private void createMetrics() {

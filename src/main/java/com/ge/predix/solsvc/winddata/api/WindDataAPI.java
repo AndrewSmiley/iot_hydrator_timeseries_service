@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.method.P;
 
 /**
  * 
@@ -80,5 +81,24 @@ public interface WindDataAPI
     @Path("/tags")
     @ApiOperation(value ="/tags")
     public Response getWindDataTags(@HeaderParam(value = "authorization") String authorization);
+
+    /**
+     *
+     * @param authorization -
+     * @return add a datapoint
+     */
+    @GET
+    @Path("/add_datapoint/{measure}/{quality}/{name}")
+    @ApiOperation(value ="/add_datapoint/{measure}/{quality}/{name}")
+    public Response addDatapoint(@PathParam("measure") String measure, @PathParam("quality") String Quality, @PathParam("name") String name,
+                                 @HeaderParam(value = "authorization") String authorization);
+
+    /**
+     *
+     */
+    @GET
+    @Path("/test")
+    @ApiOperation(value ="/test")
+    public Response test();
 
 }
