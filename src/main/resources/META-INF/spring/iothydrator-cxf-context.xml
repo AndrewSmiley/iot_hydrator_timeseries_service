@@ -27,7 +27,7 @@
 		<jaxrs:features>
 		<bean id="swagger2Feature" class="org.apache.cxf.jaxrs.swagger.Swagger2Feature">
 				<!-- customize some of the properties -->
-				<property name="title" value="Wind Data Example" />
+				<property name="title" value="IoT Hydrator Example" />
 				<property name="scanAllResources" value="true" />
 				<property name="basePath" value="/services" />
 				<property name="contact" value ="predix.adoption@ge.com"/>

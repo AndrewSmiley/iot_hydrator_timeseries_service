@@ -76,8 +76,8 @@ import org.springframework.web.context.support.StandardServletEnvironment;
 @PropertySource("classpath:application-default.properties")
 @ImportResource(
 {
-    "classpath*:META-INF/spring/winddata-cxf-context.xml",
-    "classpath*:META-INF/spring/winddata-scan-context.xml",
+        "classpath*:META-INF/spring/iothydrator-cxf-context.xml",
+        "classpath*:META-INF/spring/iothydrator-scan-context.xml",
     "classpath*:META-INF/spring/ext-util-scan-context.xml",
     "classpath*:META-INF/spring/predix-rest-client-scan-context.xml",
     "classpath*:META-INF/spring/predix-websocket-client-scan-context.xml",
