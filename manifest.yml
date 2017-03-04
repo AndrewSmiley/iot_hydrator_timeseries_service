@@ -1,5 +1,5 @@
 applications:
-  - name: iot_hydrator-iothydrator-service
+  - name: iot_hydrator_timeseries_service
     buildpack: java_buildpack
     path: target/iothydrator-timeseries-service-2.0.11.jar
     memory: 512M

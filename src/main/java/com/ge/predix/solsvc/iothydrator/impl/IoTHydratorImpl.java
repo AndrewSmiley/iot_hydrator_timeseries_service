@@ -337,7 +337,7 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
 			dpIngestion.setMessageId(String.valueOf(System.currentTimeMillis()));
 
 			Body body = new Body();
-			body.setName("Compressor-2015:CompressionRatio"); //$NON-NLS-1$
+			body.setName("Compressor-2015:CompressionRati	o"); //$NON-NLS-1$
 			List<Object> datapoint1 = new ArrayList<Object>();
 			datapoint1.add(generateTimestampsWithinYear(System.currentTimeMillis()));
 			datapoint1.add(10);
