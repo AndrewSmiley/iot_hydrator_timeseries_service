@@ -85,7 +85,7 @@ public interface IoTHydratorAPI
      *
      * @param measure the value of the datapoint
      * @param quality the quality of the datapoint
-     * @param name the name of the body entry we are submitting
+     * @param name the name of the body entry we are submitting, this shit must be json
      * @return add a datapoint
      */
     @GET

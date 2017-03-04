@@ -286,7 +286,7 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
      * @param measure
      * @param quality
      * @param name
-     * @param attributes
+     * @param attributes the name of the body entry we are submitting, this shit must be json
 	 * @return add a datapoint
      */
     @Override
