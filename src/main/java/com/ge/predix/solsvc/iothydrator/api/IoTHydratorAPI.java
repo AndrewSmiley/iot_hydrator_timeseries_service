@@ -82,16 +82,16 @@ public interface IoTHydratorAPI
     public Response getIoTHydratorTags(@HeaderParam(value = "authorization") String authorization);
 
     /**
-     *
+     * @param timestamp the timestamp of the datapoint
      * @param measure the value of the datapoint
      * @param quality the quality of the datapoint
      * @param name the name of the body entry we are submitting, this shit must be json
      * @return add a datapoint
      */
     @GET
-    @Path("/add_datapoint/{measure}/{quality}/{name}/{attributes}")
-    @ApiOperation(value ="/add_datapoint/{measure}/{quality}/{name}/{attributes}")
-    public Response addDatapoint(@PathParam("measure") String measure, @PathParam("quality") String quality, @PathParam("name") String name, @PathParam("attributes") String attributes);
+    @Path("/add_datapoint/{timestamp}/{measure}/{quality}/{name}/{attributes}")
+    @ApiOperation(value ="/add_datapoint/{timestamp}/{measure}/{quality}/{name}/{attributes}")
+    public Response addDatapoint(@PathParam("timestamp") String timestamp, @PathParam("measure") String measure, @PathParam("quality") String quality, @PathParam("name") String name, @PathParam("attributes") String attributes);
 
     /**
      *

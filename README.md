@@ -7,13 +7,19 @@
 Predix Development Kit Winddata Time Series Service
 ==================================================
 
-Welcome to Winddata Time Series Service. This is a back-end application built in Java and Spring. It is an extension of [predix-microservice-cf-jsr](https://github.com/PredixDev/predix-microservice-cf-jsr). The application exposes Rest APIs for getting time series tags, data points for one year, and the latest data point. 
+
+
+Welcome to IoT Hydrator Time Series Service. This is a back-end application built in Java and Spring. It is an extension of [predix-microservice-cf-jsr](https://github.com/PredixDev/predix-microservice-cf-jsr). The application exposes Rest APIs for getting time series tags, data points for one year, and the latest data point.
 
 NOTE: This application relies on setting up of UAA and Time Series service instances in the Predix Cloud. For further information on how to set up, please visit our [Exploring Time Series Guide](https://www.predix.io/resources/tutorials/journey.html#Journey.Exploring Time Series).
 
-Winddata has the following structure, which mirrors that of a Microservice Template found at [predix-microservice-cf-jsr](https://github.com/PredixDev/predix-microservice-cf-jsr)
+IoT Hydrator Timeseries Service has the following structure, which mirrors that of a Microservice Template found at [predix-microservice-cf-jsr](https://github.com/PredixDev/predix-microservice-cf-jsr)
 
 <img width=600 src="images/Winddata-microservice-template.png	">
+## Pro Tips
+1. Suggested IDE: Jetbrains IntelliJ. Java sucks, but that doesn't mean your IDE has to.
+1. Once you make changes that you need to push, you can fuck the unit tests by running `mvn clean && mvn install -Dmaven.test.skip=true`
+
 
 
 ##Run integration tests

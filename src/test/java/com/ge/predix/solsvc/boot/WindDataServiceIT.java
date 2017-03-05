@@ -67,95 +67,93 @@ public class WindDataServiceIT {
 	@SuppressWarnings("nls")
 	@Test
 	public void pingTest()throws Exception {
-	 assert true;
+	 	URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/ping");
+		ResponseEntity<String> response = this.template.getForEntity(windDataURl.toString(), String.class);
+		assertThat(response.getBody(), startsWith("Greetings from CXF Bean Rest Service"));
 	}
-////		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/ping");
-////		ResponseEntity<String> response = this.template.getForEntity(windDataURl.toString(), String.class);
-////		assertThat(response.getBody(), startsWith("Greetings from CXF Bean Rest Service"));
-//	}
-//
-//	/**
-//	 * @throws Exception -
-//	 */
-//	@SuppressWarnings("nls")
-//	@Test
-//	public void testDailyWindData() throws Exception {
-//
-////		HttpHeaders headers = new HttpHeaders();
-////		headers.put("Authorization", Collections.singletonList("testHeader"));
-////
-////
-////		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/yearly_data/sensor_id/Compressor-2015:CompressionRatio");
-////
-////		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
-////
-////		assertNotNull(response);
-////		assertEquals(HttpStatus.OK,response.getStatusCode());
-//	}
-//
-//	/**
-//	 * @throws Exception -
-//	 */
-//	@SuppressWarnings("nls")
-//	@Test
-//	public void testLatestWindData() throws Exception {
-////
-////		HttpHeaders headers = new HttpHeaders();
-////		headers.put("Authorization", Collections.singletonList("testHeader"));
-////
-////
-////		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/latest_data/sensor_id/Compressor-2015:CompressionRatio");
-////		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
-////
-////		DatapointsResponse dpResponse = this.jsonMapper.fromJson(response.getBody(), DatapointsResponse.class);
-////		assertNotNull(response);
-////		assertEquals(HttpStatus.OK,response.getStatusCode());
-////		assertNotNull(dpResponse);
-//	}
-//
-//	/**
-//	 * @throws Exception -
-//	 */
-//	@SuppressWarnings("nls")
-//	@Test
-//	public void testDailyWindDataWithMultipleTags() throws Exception {
-//
-////		HttpHeaders headers = new HttpHeaders();
-////		headers.put("Authorization", Collections.singletonList("testHeader"));
-////
-////
-////		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/yearly_data/sensor_id/RMD_metric3,RMD_metric2");
-////
-////		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
-////
-////		assertNotNull(response);
-////		assertEquals(HttpStatus.OK,response.getStatusCode());
-////
-////		DatapointsResponse dpResponse = this.jsonMapper.fromJson(response.getBody(), DatapointsResponse.class);
-////		assertNotNull(dpResponse.getTags());
-////		assertEquals(2,dpResponse.getTags().size());
-//	}
-//
-//	/**
-//	 * @throws Exception -
-//	 */
-//	@SuppressWarnings("nls")
-//	@Test
-//	public void testTagsData() throws Exception {
-//
-////		HttpHeaders headers = new HttpHeaders();
-////		headers.put("Authorization", Collections.singletonList("testHeader"));
-////
-////
-////		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/tags");
-////
-////		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
-////	    DatapointsResponse dpResponse = this.jsonMapper.fromJson(response.getBody(), DatapointsResponse.class);
-//
-////		assertNotNull(response);
-////		assertEquals(HttpStatus.OK,response.getStatusCode());
-////		assertNotNull(dpResponse);
-//	}
+
+	/**
+	 * @throws Exception -
+	 */
+	@SuppressWarnings("nls")
+	@Test
+	public void testDailyWindData() throws Exception {
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.put("Authorization", Collections.singletonList("testHeader"));
+
+
+		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/yearly_data/sensor_id/Compressor-2015:CompressionRatio");
+
+		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
+
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK,response.getStatusCode());
+	}
+
+	/**
+	 * @throws Exception -
+	 */
+	@SuppressWarnings("nls")
+	@Test
+	public void testLatestWindData() throws Exception {
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.put("Authorization", Collections.singletonList("testHeader"));
+
+
+		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/latest_data/sensor_id/Compressor-2015:CompressionRatio");
+		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
+
+		DatapointsResponse dpResponse = this.jsonMapper.fromJson(response.getBody(), DatapointsResponse.class);
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK,response.getStatusCode());
+		assertNotNull(dpResponse);
+	}
+
+	/**
+	 * @throws Exception -
+	 */
+	@SuppressWarnings("nls")
+	@Test
+	public void testDailyWindDataWithMultipleTags() throws Exception {
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.put("Authorization", Collections.singletonList("testHeader"));
+
+
+		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/yearly_data/sensor_id/RMD_metric3,RMD_metric2");
+
+		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
+
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK,response.getStatusCode());
+
+		DatapointsResponse dpResponse = this.jsonMapper.fromJson(response.getBody(), DatapointsResponse.class);
+		assertNotNull(dpResponse.getTags());
+		assertEquals(2,dpResponse.getTags().size());
+	}
+
+	/**
+	 * @throws Exception -
+	 */
+	@SuppressWarnings("nls")
+	@Test
+	public void testTagsData() throws Exception {
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.put("Authorization", Collections.singletonList("testHeader"));
+
+
+		URL windDataURl = new URL("http://localhost:" + this.localServerPort + "/services/iothydrator/tags");
+
+		ResponseEntity<String> response = this.template.exchange(windDataURl.toString(), HttpMethod.GET, new HttpEntity<byte[]>(headers), String.class);
+	    DatapointsResponse dpResponse = this.jsonMapper.fromJson(response.getBody(), DatapointsResponse.class);
+
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK,response.getStatusCode());
+		assertNotNull(dpResponse);
+	}
 
 
 }

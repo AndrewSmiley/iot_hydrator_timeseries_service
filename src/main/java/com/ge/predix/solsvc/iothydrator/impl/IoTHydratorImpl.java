@@ -282,7 +282,7 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
 		return datapointsQuery;
 	}
     /**
-
+	 * @param timestamp
      * @param measure
      * @param quality
      * @param name
@@ -290,7 +290,7 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
 	 * @return add a datapoint
      */
     @Override
-    public Response addDatapoint(String measure, String quality, String name, String attributes) {
+    public Response addDatapoint(String timestamp, String measure, String quality, String name, String attributes) {
 
 //        System.out.println(timestamp+" "+measure+" "+ quality+" "+name);
         DatapointsIngestion dpIngestion = new DatapointsIngestion();
@@ -299,9 +299,10 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
         Body body = new Body();
         body.setName(name); //$NON-NLS-1$
         List<Object> datapoint1 = new ArrayList<Object>();
-        datapoint1.add(generateTimestampsWithinYear(System.currentTimeMillis()));
-        datapoint1.add(Integer.parseInt(measure));
-        datapoint1.add(Integer.parseInt(quality)); // quality
+//        datapoint1.add(generateTimestampsWithinYear(System.currentTimeMillis()));
+		datapoint1.add(Long.parseLong(timestamp));
+        datapoint1.add(Long.parseLong(measure));
+        datapoint1.add(Long.parseLong(quality)); // quality
         List<Object> datapoints = new ArrayList<Object>();
         datapoints.add(datapoint1);
 
@@ -351,7 +352,7 @@ public class IoTHydratorImpl implements IoTHydratorAPI {
 			List<Object> datapoint3 = new ArrayList<Object>();
 			datapoint3.add(generateTimestampsWithinYear(System.currentTimeMillis()));
 			datapoint3.add(27);
-			datapoint3.add(0); // quality
+			datapoint3.add(0)	; // quality
 
 			List<Object> datapoint4 = new ArrayList<Object>();
 			datapoint4.add(generateTimestampsWithinYear(System.currentTimeMillis()));
